@@ -1,0 +1,34 @@
+{
+    "name": "render",
+    "version": "1.0.0",
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "dev": "vue-cli-service build && node ../server/app.js",
+        "publish": "vue-cli-service build && node ../publish.js"
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.4.3",
+        "core-js": "^3.6.5",
+        "jszip": "^3.5.0",
+        "socket.io-client": "^2.3.0",
+        "svg-sprite-loader": "^5.0.0",
+        "vue": "^2.6.11",
+        "vue-clipboard2": "^0.3.1",
+        "vue-cookies": "^1.7.2",
+        "vue-js-modal": "^2.0.0-rc.5",
+        "webrtc-adapter": "^7.6.3"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "~4.4.0",
+        "@vue/cli-service": "~4.4.0",
+        "node-sass": "^4.14.1",
+        "sass-loader": "^9.0.1",
+        "vue-template-compiler": "^2.6.11"
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead"
+    ]
+}
