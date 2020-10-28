@@ -28,7 +28,7 @@ airsend 是一个受苹果的隔空投递启发的 Web 应用程序。它允许�
 #### 2. 部署 coturn 服务
 
 #### 3. 下载代码，编译
-
+```
 1.  git clone https://github.com/NebulaStudio/airsend.git
 2.  cd render
 3.  npm install
@@ -37,7 +37,7 @@ airsend 是一个受苹果的隔空投递启发的 Web 应用程序。它允许�
 6.  npm install
 7.  修改 server/config.js 中的 mongodbUrl，databaseName 以及 iceServer
 8.  npm run dev
-
+```
 ## TODO LIST
 
 - 兼容移动端
