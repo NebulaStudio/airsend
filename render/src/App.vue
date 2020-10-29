@@ -24,6 +24,12 @@
       >。
     </div>
     <div class="friendship">
+      <a href="https://github.com/NebulaStudio/airsend/" target="_blank">
+        <svg-icon 
+          className="github"
+          iconClass="github"
+        ></svg-icon>
+      </a>
       <img src="@/assets/webrtc.png" />
     </div>
   </div>
@@ -316,8 +322,14 @@ html {
         position: absolute;
         bottom: 0;
         right: 0;
+        .github {
+          font-size: 22px;
+          margin-right: 10px;
+          margin-bottom: 6px;
+        }
         img {
           width: 80px;
+          margin-left: 6px;
           margin-right: 10px;
           margin-bottom: 6px;
         }

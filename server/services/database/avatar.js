@@ -132,28 +132,32 @@ class Avatar {
 
   get() {
     return new Promise((resolve, reject) => {
-      if (this.items) return resolve(this.items);
+      if (this.items) {
+        return resolve(this.items);
+      }
       MongoClient.connect(
         config.mongodbUrl,
         this.options,
-        async (err, client) => {
+        (err, client) => {
           if (err) {
-            console.log(err);
+            console.log('avatar get ', err);
             return reject(err);
           }
           const db = client.db(config.databaseName);
           const collection = db.collection('avatar');
-          this.items = await collection
-            .find(
-              {},
-              {
-                label: 1,
-                icon: 1,
-              }
-            )
-            .toArray();
-          await client.close();
-          return resolve(this.items);
+          collection.find({},
+            {
+              label: 1,
+              icon: 1,
+            }).toArray((err, result) => {
+              client.close();
+              if (err) {
+                console.log('avatar get 2', err);
+                return reject(err);
+              } 
+              this.items = result;
+              resolve(result);
+            }); 
         }
       );
     });

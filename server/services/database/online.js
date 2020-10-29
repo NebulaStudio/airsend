@@ -15,7 +15,10 @@ class Online {
         config.mongodbUrl,
         this.options,
         async (err, client) => {
-          if (err) return reject(err);
+          if (err) {
+            console.log('online add ', err);
+            return reject(err);
+          };
           const db = client.db(config.databaseName);
           const collection = db.collection('online');
           let item = await collection.findOne({
@@ -52,7 +55,10 @@ class Online {
         config.mongodbUrl,
         this.options,
         async (err, client) => {
-          if (err) return reject(err);
+          if (err) {
+            console.log('online remove ', err);
+            return reject(err);
+          }
           const db = client.db(config.databaseName);
           const collection = db.collection('online');
           await collection.updateOne(
@@ -86,7 +92,10 @@ class Online {
         config.mongodbUrl,
         this.options,
         async (err, client) => {
-          if (err) return reject(err);
+          if (err) {
+            console.log('online clean ', err);
+            return reject(err);
+          }
           const db = client.db(config.databaseName);
           const collection = db.collection('online');
           await collection.deleteMany({});
@@ -103,7 +112,10 @@ class Online {
         config.mongodbUrl,
         this.options,
         async (err, client) => {
-          if (err) return reject(err);
+          if (err) {
+            console.log('online get ', err);
+            return reject(err);
+          }
           const db = client.db(config.databaseName);
           const collection = db.collection('online');
           const e = await collection.findOne({

@@ -14,8 +14,9 @@ class Turn {
       MongoClient.connect(
         config.mongodbUrl,
         this.options,
-        async (err, client) => {
+        (err, client) => {
           if (err) {
+            console.log('turn add ', err);
             return reject(err);
           }
           const db = client.db(config.databaseName);
@@ -25,9 +26,14 @@ class Turn {
             name: user,
             hmackey: password,
           };
-          await collection.insertOne(doc);
-          await client.close();
-          resolve();
+          collection.insertOne(doc, (err) => {
+            client.close();
+            if (err) {
+              console.log('turn add 2 ', err);
+              return reject(err);
+            }
+            resolve();
+          });  
         }
       );
     });
@@ -38,16 +44,24 @@ class Turn {
       MongoClient.connect(
         config.mongodbUrl,
         this.options,
-        async (err, client) => {
-          if (err) return reject(err);
+        (err, client) => {
+          if (err) {
+            console.log('turn remove ', err);
+            return reject(err);
+          }
           const db = client.db(config.databaseName);
           const collection = db.collection('turnusers_lt');
           const doc = {
             name: user,
           };
-          await collection.deleteOne(doc);
-          await client.close();
-          resolve();
+          collection.deleteOne(doc, (err) => {
+            client.close();
+            if (err) {
+              console.log('turn remove 2 ', err);
+              return reject(err);
+            }
+            resolve();
+          }); 
         }
       );
     });
@@ -58,13 +72,20 @@ class Turn {
       MongoClient.connect(
         config.mongodbUrl,
         this.options,
-        async (err, client) => {
-          if (err) return reject(err);
+        (err, client) => {
+          if (err) {
+            console.log('turn clean ', err);
+            return reject(err);
+          }
           const db = client.db(config.databaseName);
           const collection = db.collection('turnusers_lt');
-          await collection.deleteMany({});
-          await client.close();
-          resolve();
+          collection.deleteMany({}, (err) => {
+            if (err) {
+              console.log('turn clean 2 ', err);
+              return reject(err);
+            }
+            resolve();
+          });
         }
       );
     });
